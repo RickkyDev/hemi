@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { router } from 'expo-router';
 import { getStoredSession } from '../services/authService';
+import LoadingScreen from '../components/loadingScreen';
 
 export default function IndexScreen() {
     useEffect(() => {
@@ -19,18 +19,5 @@ export default function IndexScreen() {
         checkSession();
     }, []);
 
-    return (
-        <View style={styles.container}>
-            <ActivityIndicator />
-        </View>
-    );
+    return <LoadingScreen />;
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#101010',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});

@@ -1,11 +1,15 @@
+// General imports
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { supabase } from "../../lib/supabase";
 
+// Screens and cards
+import LoadingScreen from '../../components/loadingScreen';
 import DailyReflectionCard from "../../components/dailyReflection";
 import RelationshipTime from "../../components/relationshipTime";
 
+// Modules
 import { getStoredSession, logout } from "../../services/authService";
 import { DailyReflection, getDailyReflection } from "../../services/reflectionService";
 import { getRelationship } from "../../services/relationshipService";
@@ -115,6 +119,10 @@ export default function HomeScreen() {
   async function handleLogout() {
     await logout();
     router.replace("/login");
+  }
+
+  if (isLoading) {
+      return <LoadingScreen />;
   }
 
   return (
